@@ -1,15 +1,64 @@
-var twitter = require('twitter');
-var twit = new twitter({
-    consumerKey: 'Q2hlsb4hCHy1BfnEizbfIHc2e',
-    consumerSecret: 't7a22U1AaE4x5AAcgwr6mIBIyx3aa9qCRGNsH5kucCQahrwwEn',
-    access_token_key: '380363171-wOl8vL9R64j9lXMWdDUUhHG13tGAeTcws79Eb24u',
-    access_token_secret: 'Ee8p2tAxK6HNBPDBQqffzYhCEVWlfDgFan7PR8jqAQmFy'
+// var twitter = require('twitter');
+// var readline = require('readline');
+
+// var twit = new twitter({
+//     consumer_key: '	KqEVSet8JInpr4Ughton8Pdxc',
+//     consumer_secret: 'Ne3YNu9bM4KDUx3dNpwQ6tRcuaPDc9D2tnMVWAYjGZ5oDFODWA',
+//     access_token_key: '380363171-YKT46bY5ohfwiVCkuivZ46sPoIQ0JBskvMzsY8qA',
+//     access_token_secret: 'fPewYfM95l4kXVDMxfyN687trZGtCHdsc1fIzeaGKncao'
+// });
+
+// var rl = readline.createInterface(process.stdin, process.stdout);
+// // rl.question('enter username? ', function(user) {
+// //     // TODO: Log the answer in a database
+// //     var options = {
+// //         screen_name: user,
+// //         count: 3
+// //     };
+// //     twit.get('statuses/user_timeline', options, function(err, data, response) {
+// //         for (var i = 0; i < data.length; i++) {
+// //             console.log(data[i].text);
+// //         }
+// //     });
+// //     rl.close();
+// // });
+
+
+
+
+var tweet = require('twitter');
+var readline = require('readline');
+
+twit = new tweet({
+    consumer_key: 'KqEVSet8JInpr4Ughton8Pdxc',
+    consumer_secret: 'Ne3YNu9bM4KDUx3dNpwQ6tRcuaPDc9D2tnMVWAYjGZ5oDFODWA',
+    access_token_key: '380363171-YKT46bY5ohfwiVCkuivZ46sPoIQ0JBskvMzsY8qA',
+    access_token_secret: 'fPewYfM95l4kXVDMxfyN687trZGtCHdsc1fIzeaGKncao',
 });
 
-var options = { screen_name: 'sandagolcea',
-                count: 3 };
-T.get('statuses/user_timeline', options , function(err, data) {
-  for (var i = 0; i < data.length ; i++) {
-    console.log(data[i].text);
-  }
-})
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question('What word would you like to search on twitter? ', (user) => {
+    // if (typeof answer === "string") {
+    //     twitter.get('search/tweets', { q: answer, count: 5 }, function(err, data, response) {
+    //         console.log(data);
+    //     });
+
+    // }
+
+    // rl.close();
+    //TODO: Log the answer in a database
+    var options = {
+        screen_name: user,
+        count: 3
+    };
+    twit.get('statuses/user_timeline', options, function(err, data, response) {
+        for (var i = 0; i < data.length; i++) {
+            console.log('\nTweets ' + '----> ' + data[i].text + '\n');
+        }
+    });
+    rl.close();
+});
