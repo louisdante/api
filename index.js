@@ -42,7 +42,6 @@ var rl = readline.createInterface({
 });
 console.log("Hello there!");
 rl.question('Please enter 1 to get tweets or 2 to post tweets  ', (opt) => {
-
     if (opt == 1) {
         rl.question('Please enter the USERID for tweets? ', (user) => {
 
@@ -60,7 +59,7 @@ rl.question('Please enter 1 to get tweets or 2 to post tweets  ', (opt) => {
     } else if (opt == 2) {
         rl.question('Please enter the USERID to post tweets? ', (user) => {
             var options = user;
-            twit.post('statuses/update', { status: option }, function(err, data, response) {
+            twit.post('statuses/update', { status: options }, function(err, data, response) {
                 console.log(data)
             });
         });
