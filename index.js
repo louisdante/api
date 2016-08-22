@@ -40,25 +40,32 @@ var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+console.log("Hello there!");
+rl.question('Please enter 1 to get tweets or 2 to post tweets  ', (opt) => {
 
-rl.question('What word would you like to search on twitter? ', (user) => {
-    // if (typeof answer === "string") {
-    //     twitter.get('search/tweets', { q: answer, count: 5 }, function(err, data, response) {
-    //         console.log(data);
-    //     });
+    if (opt == 1) {
+        rl.question('Please enter the USERID for tweets? ', (user) => {
 
-    // }
+            var options = {
+                screen_name: user,
+                count: 3
+            };
+            twit.get('statuses/user_timeline', options, function(err, data, response) {
+                for (var i = 0; i < data.length; i++) {
+                    console.log('\nTweets ' + '----> ' + data[i].text + '\n');
+                }
+            });
+            rl.close();
+        });
+    } else if (opt == 2) {
+        rl.question('Please enter the USERID to post tweets? ', (user) => {
+            var options = user;
+            twit.post('statuses/update', { status: option }, function(err, data, response) {
+                console.log(data)
+            });
+        });
+    } else {
+        console.log('Please enter 1 or 2 to use this app');
+    }
 
-    // rl.close();
-    //TODO: Log the answer in a database
-    var options = {
-        screen_name: user,
-        count: 3
-    };
-    twit.get('statuses/user_timeline', options, function(err, data, response) {
-        for (var i = 0; i < data.length; i++) {
-            console.log('\nTweets ' + '----> ' + data[i].text + '\n');
-        }
-    });
-    rl.close();
 });
