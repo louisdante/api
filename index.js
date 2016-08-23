@@ -28,12 +28,13 @@
 
 var tweet = require('twitter');
 var readline = require('readline');
+require('dotenv').config();
 
 twit = new tweet({
-    consumer_key: 'KqEVSet8JInpr4Ughton8Pdxc',
-    consumer_secret: 'Ne3YNu9bM4KDUx3dNpwQ6tRcuaPDc9D2tnMVWAYjGZ5oDFODWA',
-    access_token_key: '380363171-YKT46bY5ohfwiVCkuivZ46sPoIQ0JBskvMzsY8qA',
-    access_token_secret: 'fPewYfM95l4kXVDMxfyN687trZGtCHdsc1fIzeaGKncao',
+    consumer_key: process.env.consumer_key,
+    consumer_secret: process.env.consumer_secret,
+    access_token_key: process.env.access_token_key,
+    access_token_secret: process.env.access_token_secret,
 });
 
 var rl = readline.createInterface({

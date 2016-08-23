@@ -18,5 +18,8 @@
   "homepage": "https://github.com/louisdante/api#readme",
   "devDependencies": {
     "twitter": "^1.4.0"
+  },
+  "dependencies": {
+    "dotenv": "^2.0.0"
   }
 }
